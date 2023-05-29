@@ -85,9 +85,9 @@
     </div>
 
 <form id="form">
-    <input type="text" name="user_name" id="user_name" placeholder="user_name">
-    <input type="text" name="user_email" id="user_email" placeholder="user_email">
-    <input type="text" name="user_phone" id="user_phone" placeholder="user_phone">
+    <input type="text" name="user_name" id="user_name" required placeholder="user_name">
+    <input type="text" name="user_email" id="user_email" required placeholder="user_email">
+    <input type="text" name="user_phone" id="user_phone" required placeholder="user_phone">
     <button id="order">Yuborish</button>
 </form>
 
@@ -96,6 +96,7 @@
         let buy = document.getElementById('buy');
         let order = document.getElementById('order');
 
+
         buy.addEventListener("click", ()=>{
             document.getElementById("main").style.display = "none";
             document.getElementById("form").style.display = "block";
@@ -103,7 +104,18 @@
         });
 
         order.addEventListener("click", () => {
+            let name = document.getElementById("user_name").value;
+            let email = document.getElementById("user_email").value;
+            let phone = document.getElementById("user_phone").value;
+
+            let data = {
+                name: name,
+                email:email,
+                phone:phone
+            }
+            tg.sendData(JSON.stringify(data));
             tg.close();
+            tg.expend();
         });
 
     </script>
