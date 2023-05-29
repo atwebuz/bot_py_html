@@ -22,7 +22,7 @@
        color:var(--tg-theme-text-color);
        background: var(--tg-theme-bg-color)
     }
-    .main{
+    #main{
         width:100%;
         padding:20px;
         text-align:center
@@ -77,11 +77,11 @@
 
 </style>
 
-    <div class="main">
+    <div id="main">
         <h1>Avto shop</h1>
         <img src="https://www.carshop.com/media/carshop-og.jpg" alt="not-found">
         <p>salom avto shopga xush kelibsiz </p>
-        <button id="but">Sotib olish</button>
+        <button id="buy">Sotib olish</button>
     </div>
 
 <form id="form">
@@ -91,9 +91,22 @@
     <button id="order">Yuborish</button>
 </form>
 
-<script>
+    <script>
+        let tg = window.Telegram.WebApp;
+        let buy = document.getElementById('buy');
+        let order = document.getElementById('order');
 
-</script>
+        buy.addEventListener("click", ()=>{
+            document.getElementById("main").style.display = "none";
+            document.getElementById("form").style.display = "block";
+            document.getElementById("user_name").value = tg.initDataUnsafe.user.first_name +  " " + tg.initDataUnsafe.user.last_name
+        });
+
+        order.addEventListener("click", () => {
+            tg.close();
+        });
+
+    </script>
 
 </body>
 </html>
